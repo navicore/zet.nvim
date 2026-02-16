@@ -138,24 +138,6 @@ function M.setup()
 
     -- Set up autocmds for auto-conversion and virtual text
     require("zettlekast.reminders.autocmds").setup_autocmds()
-
-    -- Legacy command aliases
-    vim.api.nvim_create_user_command("ReminderScan", function()
-        M.scan(false)
-    end, {})
-
-    vim.api.nvim_create_user_command("ReminderScanUpcoming", function(opts)
-        local hours = opts.args ~= "" and tonumber(opts.args) or nil
-        M.scan(true, hours)
-    end, { nargs = "?" })
-
-    vim.api.nvim_create_user_command("ReminderScanAll", function()
-        M.scan_all()
-    end, {})
-
-    vim.api.nvim_create_user_command("ReminderEdit", function()
-        M.edit()
-    end, {})
 end
 
 return M
