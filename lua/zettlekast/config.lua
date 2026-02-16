@@ -32,6 +32,7 @@ M.defaults = {
 
     auto_set_filetype = true,
     command_palette_theme = "ivy",
+    default_keymaps = true,
 
     reminders = {
         enabled = true,

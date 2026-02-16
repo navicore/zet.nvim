@@ -4,13 +4,26 @@ local M = {}
 --- Setup the plugin with user configuration
 function M.setup(user_config)
     -- Initialize config
-    require("zettlekast.config").setup(user_config)
+    local cfg = require("zettlekast.config").setup(user_config)
 
     -- Setup calendar integration
     require("zettlekast.calendar").setup()
 
     -- Setup reminder subsystem
     require("zettlekast.reminders").setup()
+
+    -- Setup default keymaps
+    if cfg.default_keymaps then
+        local map = vim.keymap.set
+        map("n", "<leader>z", "<cmd>Zettlekast panel<CR>", { desc = "Zettlekast panel" })
+        map("n", "<leader>zf", "<cmd>Zettlekast find_notes<CR>", { desc = "Find notes" })
+        map("n", "<leader>zd", "<cmd>Zettlekast goto_today<CR>", { desc = "Today's note" })
+        map("n", "<leader>zn", "<cmd>Zettlekast new_note<CR>", { desc = "New note" })
+        map("n", "<leader>zs", "<cmd>Zettlekast search_notes<CR>", { desc = "Search notes" })
+        map("n", "<leader>zc", "<cmd>Zettlekast show_calendar<CR>", { desc = "Calendar" })
+        map("n", "<leader>zr", "<cmd>Zettlekast reminder_scan<CR>", { desc = "Due reminders" })
+        map("n", "<leader>zre", "<cmd>Zettlekast reminder_edit<CR>", { desc = "Snooze reminder" })
+    end
 end
 
 -- Command list for tab completion and panel
