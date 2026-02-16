@@ -40,8 +40,8 @@ for dir in "$@"; do
 
     [[ -d "$dir" ]] || continue
 
-    # Scan .md files recursively
-    while IFS= read -r file; do
+    # Scan only top-level .md files (no recursion into archive dirs)
+    for file in "$dir"/*.md; do
         [[ -f "$file" ]] || continue
 
         # Find unchecked reminders with ISO 8601 timestamps
@@ -63,7 +63,7 @@ for dir in "$@"; do
                 ((count++))
             fi
         done < <(grep -E '^\* \[ \] #reminder' "$file" 2>/dev/null)
-    done < <(find "$dir" -name "*.md" -type f 2>/dev/null)
+    done
 done
 
 # Output for tmux with click support

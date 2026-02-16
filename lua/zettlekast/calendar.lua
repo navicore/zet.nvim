@@ -74,25 +74,9 @@ function M.setup()
         return
     end
 
-    -- Set the calendar action and sign callbacks
+    -- Point calendar-vim at the autoload bridge functions
     vim.g.calendar_action = "zettlekast#calendar_action"
     vim.g.calendar_sign = "zettlekast#calendar_sign"
-
-    -- Create VimScript bridge functions
-    vim.cmd([[
-        function! zettlekast#calendar_action(day, month, year, week, dir)
-            lua require("zettlekast.calendar").calendar_action(
-                \ vim.fn.str2nr(a:day),
-                \ vim.fn.str2nr(a:month),
-                \ vim.fn.str2nr(a:year),
-                \ a:week, a:dir)
-        endfunction
-
-        function! zettlekast#calendar_sign(day, month, year)
-            return luaeval('require("zettlekast.calendar").calendar_sign(_A[1], _A[2], _A[3])',
-                \ [a:day, a:month, a:year])
-        endfunction
-    ]])
 end
 
 return M
