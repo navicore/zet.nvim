@@ -1,7 +1,7 @@
 local M = {}
 
-local config = require("zettlekast.config")
-local utils = require("zettlekast.utils")
+local config = require("zet.config")
+local utils = require("zet.utils")
 
 --- Scan all notes for #tags and return a sorted unique list
 function M.collect_tags()

@@ -1,9 +1,9 @@
 local M = {}
 
-local config = require("zettlekast.config")
-local dates = require("zettlekast.dates")
-local templates = require("zettlekast.templates")
-local utils = require("zettlekast.utils")
+local config = require("zet.config")
+local dates = require("zet.dates")
+local templates = require("zet.templates")
+local utils = require("zet.utils")
 
 --- Generate a filename for a new note
 function M.generate_filename(title, cfg)

@@ -1,7 +1,7 @@
 -- Reminder scanner: discovers and filters reminders across vault directories
 local M = {}
 
-local time_parser = require("zettlekast.reminders.time_parser")
+local time_parser = require("zet.reminders.time_parser")
 
 -- A list to store reminders that are due or past
 M.reminders = {}
@@ -103,9 +103,9 @@ local function scan_file(file_path, upcoming, all_reminders, threshold_hours)
     end
 end
 
---- Get scan dirs from zettlekast config
+--- Get scan dirs from zet config
 local function get_scan_dirs()
-    local cfg = require("zettlekast.config").get()
+    local cfg = require("zet.config").get()
     return cfg.scan_dirs or { cfg.home }
 end
 

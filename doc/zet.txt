@@ -1,24 +1,24 @@
-*zettlekast.txt*  Focused Zettelkasten + Reminders for Neovim
+*zet.txt*  Focused Zettelkasten + Reminders for Neovim
 
 Author:  navicore
 License: MIT
 
 ==============================================================================
-CONTENTS                                                   *zettlekast-contents*
+CONTENTS                                                   *zet-contents*
 
-  1. Introduction .................. |zettlekast-intro|
-  2. Requirements .................. |zettlekast-requirements|
-  3. Setup ......................... |zettlekast-setup|
-  4. Commands ...................... |zettlekast-commands|
-  5. Configuration ................. |zettlekast-config|
-  6. Reminders ..................... |zettlekast-reminders|
-  7. Calendar ...................... |zettlekast-calendar|
-  8. Tmux Integration .............. |zettlekast-tmux|
+  1. Introduction .................. |zet-intro|
+  2. Requirements .................. |zet-requirements|
+  3. Setup ......................... |zet-setup|
+  4. Commands ...................... |zet-commands|
+  5. Configuration ................. |zet-config|
+  6. Reminders ..................... |zet-reminders|
+  7. Calendar ...................... |zet-calendar|
+  8. Tmux Integration .............. |zet-tmux|
 
 ==============================================================================
-1. INTRODUCTION                                               *zettlekast-intro*
+1. INTRODUCTION                                               *zet-intro*
 
-zettlekast.nvim is a focused Zettelkasten note-taking plugin with integrated
+zet.nvim is a focused Zettelkasten note-taking plugin with integrated
 reminder management. It is designed to work with existing markdown note
 collections without migration.
 
@@ -31,20 +31,20 @@ Features:
 - Tmux status bar integration for reminder counts
 
 ==============================================================================
-2. REQUIREMENTS                                        *zettlekast-requirements*
+2. REQUIREMENTS                                        *zet-requirements*
 
 - Neovim >= 0.8
 - telescope.nvim (required)
 - plenary.nvim (required, dependency of telescope)
 - calendar-vim (optional, for calendar integration)
-- render-markdown.nvim (optional, detects zettlekast filetype)
+- render-markdown.nvim (optional, detects zet filetype)
 
 ==============================================================================
-3. SETUP                                                     *zettlekast-setup*
+3. SETUP                                                     *zet-setup*
 
 Add to your plugin manager, then call setup: >lua
 
-  require("zettlekast").setup({
+  require("zet").setup({
       home = "~/git/navicore/zet",
       templates = "~/git/navicore/zet/templates",
       template_new_note = "~/git/navicore/zet/templates/base_note.md",
@@ -85,58 +85,58 @@ Add to your plugin manager, then call setup: >lua
 <
 
 ==============================================================================
-4. COMMANDS                                               *zettlekast-commands*
+4. COMMANDS                                               *zet-commands*
 
-All commands are accessed via `:Zettlekast <subcommand>` with tab completion.
-`:Zettlekast` alone opens the command palette (panel).
+All commands are accessed via `:Zet <subcommand>` with tab completion.
+`:Zet` alone opens the command palette (panel).
 
-                                                        *:Zettlekast-panel*
-:Zettlekast panel         Command palette showing all commands
+                                                        *:Zet-panel*
+:Zet panel         Command palette showing all commands
 
-                                                    *:Zettlekast-find_notes*
-:Zettlekast find_notes    Browse notes by filename via Telescope
+                                                    *:Zet-find_notes*
+:Zet find_notes    Browse notes by filename via Telescope
 
-                                              *:Zettlekast-find_daily_notes*
-:Zettlekast find_daily_notes  Browse daily notes only (YYYY-MM-DD.md)
+                                              *:Zet-find_daily_notes*
+:Zet find_daily_notes  Browse daily notes only (YYYY-MM-DD.md)
 
-                                                  *:Zettlekast-search_notes*
-:Zettlekast search_notes  Live grep across all notes
+                                                  *:Zet-search_notes*
+:Zet search_notes  Live grep across all notes
 
-                                                     *:Zettlekast-new_note*
-:Zettlekast new_note      Create a new note (prompts for title)
+                                                     *:Zet-new_note*
+:Zet new_note      Create a new note (prompts for title)
 
-                                            *:Zettlekast-new_templated_note*
-:Zettlekast new_templated_note  Pick a template, then create note
+                                            *:Zet-new_templated_note*
+:Zet new_templated_note  Pick a template, then create note
 
-                                                  *:Zettlekast-rename_note*
-:Zettlekast rename_note   Rename current note and update all [[backlinks]]
+                                                  *:Zet-rename_note*
+:Zet rename_note   Rename current note and update all [[backlinks]]
 
-                                                  *:Zettlekast-follow_link*
-:Zettlekast follow_link   Follow [[link]] under cursor (creates if missing)
+                                                  *:Zet-follow_link*
+:Zet follow_link   Follow [[link]] under cursor (creates if missing)
 
-                                                  *:Zettlekast-insert_link*
-:Zettlekast insert_link   Pick a note via Telescope, insert [[link]]
+                                                  *:Zet-insert_link*
+:Zet insert_link   Pick a note via Telescope, insert [[link]]
 
-                                                   *:Zettlekast-goto_today*
-:Zettlekast goto_today    Open or create today's daily note
+                                                   *:Zet-goto_today*
+:Zet goto_today    Open or create today's daily note
 
-                                                    *:Zettlekast-show_tags*
-:Zettlekast show_tags     Browse all #tags via Telescope
+                                                    *:Zet-show_tags*
+:Zet show_tags     Browse all #tags via Telescope
 
-                                                *:Zettlekast-show_calendar*
-:Zettlekast show_calendar Open calendar-vim
+                                                *:Zet-show_calendar*
+:Zet show_calendar Open calendar-vim
 
-                                                *:Zettlekast-reminder_scan*
-:Zettlekast reminder_scan Show due reminders via Telescope
+                                                *:Zet-reminder_scan*
+:Zet reminder_scan Show due reminders via Telescope
 
-                                       *:Zettlekast-reminder_scan_upcoming*
-:Zettlekast reminder_scan_upcoming  Show reminders due within N hours
+                                       *:Zet-reminder_scan_upcoming*
+:Zet reminder_scan_upcoming  Show reminders due within N hours
 
-                                            *:Zettlekast-reminder_scan_all*
-:Zettlekast reminder_scan_all  Show all reminders
+                                            *:Zet-reminder_scan_all*
+:Zet reminder_scan_all  Show all reminders
 
-                                                *:Zettlekast-reminder_edit*
-:Zettlekast reminder_edit Snooze/edit reminder on current line
+                                                *:Zet-reminder_edit*
+:Zet reminder_edit Snooze/edit reminder on current line
 
 Legacy aliases are also available:
   :ReminderScan
@@ -145,7 +145,7 @@ Legacy aliases are also available:
   :ReminderEdit
 
 ==============================================================================
-5. CONFIGURATION                                            *zettlekast-config*
+5. CONFIGURATION                                            *zet-config*
 
 home                     Root directory for notes
                          Default: "~/git/navicore/zet"
@@ -188,7 +188,7 @@ rename_update_links      Update [[links]] when renaming notes
 tag_notation             Tag style: "#tag"
                          Default: "#tag"
 
-auto_set_filetype        Set zettlekast filetype for vault files
+auto_set_filetype        Set zet filetype for vault files
                          Default: true
 
 command_palette_theme    Telescope theme for panel: "ivy" or "dropdown"
@@ -207,7 +207,7 @@ Templates support {{variable}} placeholders: >
 <
 
 ==============================================================================
-6. REMINDERS                                             *zettlekast-reminders*
+6. REMINDERS                                             *zet-reminders*
 
 Reminders are written as inline markers in any note: >
   #reminder in 2 hours: review pull request
@@ -237,7 +237,7 @@ Configuration: >lua
 <
 
 ==============================================================================
-7. CALENDAR                                               *zettlekast-calendar*
+7. CALENDAR                                               *zet-calendar*
 
 When plug_into_calendar = true and calendar-vim is installed:
 - Days with notes are marked in the calendar
@@ -249,7 +249,7 @@ calendar_opts:
   calendar_mark   Mark position: "left", "right", "left-fit"
 
 ==============================================================================
-8. TMUX INTEGRATION                                          *zettlekast-tmux*
+8. TMUX INTEGRATION                                          *zet-tmux*
 
 Three scripts are provided in scripts/:
 
@@ -260,13 +260,13 @@ tmux-reminders.sh ~
 <
 
 tmux-reminder-popup.sh ~
-  Opens nvim with :Zettlekast reminder_scan in a tmux popup.
+  Opens nvim with :Zet reminder_scan in a tmux popup.
   Usage: >
     bind r run-shell '/path/to/tmux-reminder-popup.sh'
 <
 
 tmux-zett-popup.sh ~
-  Opens nvim with :Zettlekast goto_today in a tmux popup.
+  Opens nvim with :Zet goto_today in a tmux popup.
   Usage: >
     bind -Troot MouseDown1Status if -F '#{==:#{mouse_status_range},zett}' \
       { run-shell '/path/to/tmux-zett-popup.sh' }

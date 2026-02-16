@@ -23,4 +23,4 @@ syntax match zkTag "\v:[a-zA-ZÀ-ÿ]+[a-zA-ZÀ-ÿ0-9/\-_]*:"
 syntax match zkTagSep "\v\s*,\s*" contained
 syntax region zkTag matchgroup=zkBrackets start=/^tags\s*:\s*\[\s*/ end=/\s*\]\s*$/ contains=zkTagSep display oneline
 
-let b:current_syntax = 'zettlekast'
+let b:current_syntax = 'zet'

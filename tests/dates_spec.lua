@@ -1,7 +1,7 @@
 -- run via:
 -- :PlenaryBustedFile tests/dates_spec.lua
 
-local dates = require("zettlekast.dates")
+local dates = require("zet.dates")
 
 describe("dates", function()
     describe("today", function()

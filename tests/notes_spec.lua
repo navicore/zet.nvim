@@ -1,7 +1,7 @@
 -- run via:
 -- :PlenaryBustedFile tests/notes_spec.lua
 
-local notes = require("zettlekast.notes")
+local notes = require("zet.notes")
 
 describe("notes", function()
     describe("generate_filename", function()

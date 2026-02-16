@@ -2,7 +2,7 @@
 local M = {}
 
 -- Namespace for the virtual text
-local namespace_id = vim.api.nvim_create_namespace("zettlekast_reminder_virtual_text")
+local namespace_id = vim.api.nvim_create_namespace("zet_reminder_virtual_text")
 
 -- Function to set virtual text for a reminder line using extmarks
 function M.set_virtual_text(bufnr, line_nr, text)
@@ -20,7 +20,7 @@ function M.update_virtual_text()
     -- Clear all virtual texts in the namespace before updating
     vim.api.nvim_buf_clear_namespace(bufnr, namespace_id, 0, -1)
 
-    local time_parser = require("zettlekast.reminders.time_parser")
+    local time_parser = require("zet.reminders.time_parser")
 
     for i, line in ipairs(lines) do
         local datetime = line:match("#reminder (%d%d%d%d%-%d%d%-%d%dT%d%d:%d%d:%d%dZ)")

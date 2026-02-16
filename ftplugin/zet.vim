@@ -1,4 +1,4 @@
-" Vim filetype plugin for zettlekast (markdown-compatible)
+" Vim filetype plugin for zet (markdown-compatible)
 
 if exists("b:did_ftplugin")
   finish

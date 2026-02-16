@@ -67,7 +67,7 @@ for dir in "$@"; do
 done
 
 # Output for tmux with click support
-# "Zett" is always shown (range=user|zett) - opens Zettlekast goto_today
+# "Zett" is always shown (range=user|zett) - opens Zet goto_today
 # When reminders are due, a red count badge (range=user|reminder) is also shown
 if [[ "$count" -gt 0 ]]; then
     echo "#[fg=#131a24,bg=#f7768e,bold]#[range=user|reminder] ${count} #[norange]#[fg=#f7768e,bg=#131a24,bold]#[range=user|zett] Zett #[norange]"

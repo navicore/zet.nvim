@@ -141,7 +141,7 @@ function M.line_history()
     local filepath = vim.api.nvim_buf_get_name(bufnr)
 
     if filepath == "" then
-        vim.notify("Zettlekast: buffer has no file", vim.log.levels.WARN)
+        vim.notify("Zet: buffer has no file", vim.log.levels.WARN)
         return
     end
 
@@ -183,7 +183,7 @@ function M.line_history()
                 vim.bo[float_buf].bufhidden = "wipe"
 
                 -- Apply highlights
-                local ns = vim.api.nvim_create_namespace("zettlekast_history")
+                local ns = vim.api.nvim_create_namespace("zet_history")
                 for _, hl in ipairs(highlights) do
                     vim.api.nvim_buf_add_highlight(float_buf, ns, hl.hl, hl.line, 0, -1)
                 end
@@ -219,7 +219,7 @@ function M.line_history()
             vim.schedule(function()
                 local err = table.concat(data, "\n")
                 if err and err ~= "" then
-                    vim.notify("Zettlekast: " .. vim.trim(err), vim.log.levels.WARN)
+                    vim.notify("Zet: " .. vim.trim(err), vim.log.levels.WARN)
                 end
             end)
         end,

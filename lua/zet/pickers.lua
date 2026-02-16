@@ -1,12 +1,12 @@
 local M = {}
 
-local config = require("zettlekast.config")
-local utils = require("zettlekast.utils")
+local config = require("zet.config")
+local utils = require("zet.utils")
 
 local function get_telescope()
     local has_telescope, _ = pcall(require, "telescope")
     if not has_telescope then
-        vim.notify("Telescope is required for zettlekast pickers", vim.log.levels.ERROR)
+        vim.notify("Telescope is required for zet pickers", vim.log.levels.ERROR)
         return nil
     end
     return {
@@ -149,7 +149,7 @@ function M.panel()
     if not tel then return end
     local cfg = config.get()
 
-    local commands = require("zettlekast").command_list()
+    local commands = require("zet").command_list()
     local command_descriptions = {
         panel = "Command palette",
         find_notes = "Browse notes by filename",
@@ -187,7 +187,7 @@ function M.panel()
     end
 
     tel.pickers.new(theme_opts, {
-        prompt_title = "Zettlekast",
+        prompt_title = "Zet",
         finder = tel.finders.new_table({
             results = entries,
             entry_maker = function(entry)
@@ -204,7 +204,7 @@ function M.panel()
                 local selection = tel.action_state.get_selected_entry()
                 tel.actions.close(prompt_bufnr)
                 if selection then
-                    local zk = require("zettlekast")
+                    local zk = require("zet")
                     if zk[selection.value.name] then
                         vim.schedule(function()
                             zk[selection.value.name]()

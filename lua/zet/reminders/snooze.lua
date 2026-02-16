@@ -1,7 +1,7 @@
 -- Shared snooze options and datetime calculation
 local M = {}
 
-local time_parser = require("zettlekast.reminders.time_parser")
+local time_parser = require("zet.reminders.time_parser")
 
 -- Snooze choices for edit/snooze actions
 M.choices = {

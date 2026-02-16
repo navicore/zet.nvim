@@ -1,7 +1,7 @@
 -- run via:
 -- :PlenaryBustedFile tests/links_spec.lua
 
-local links = require("zettlekast.links")
+local links = require("zet.links")
 
 describe("links", function()
     describe("link_under_cursor", function()
@@ -17,8 +17,8 @@ describe("links", function()
     describe("resolve_link", function()
         it("should return nil for non-existent links", function()
             -- Set up minimal config
-            require("zettlekast.config").setup({
-                home = "/tmp/zettlekast_test_nonexistent",
+            require("zet.config").setup({
+                home = "/tmp/zet_test_nonexistent",
                 archive_dirs = {},
                 auto_set_filetype = false,
                 reminders = { enabled = false },

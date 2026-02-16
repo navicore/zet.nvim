@@ -1,8 +1,8 @@
 local M = {}
 
-local config = require("zettlekast.config")
-local utils = require("zettlekast.utils")
-local notes = require("zettlekast.notes")
+local config = require("zet.config")
+local utils = require("zet.utils")
+local notes = require("zet.notes")
 
 --- Extract [[link_text]] under the cursor
 function M.link_under_cursor()

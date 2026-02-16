@@ -1,4 +1,4 @@
-# zettlekast.nvim
+# zet.nvim
 
 A focused Zettelkasten note-taking plugin for Neovim with integrated reminder
 management. Built on Telescope and designed to work with existing markdown note
@@ -19,7 +19,7 @@ collections without migration.
 - [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) (required)
 - [plenary.nvim](https://github.com/nvim-lua/plenary.nvim) (required, dependency of telescope)
 - [calendar-vim](https://github.com/mattn/calendar-vim) (optional, for calendar integration)
-- [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) (optional, detects the `zettlekast` filetype)
+- [render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim) (optional, detects the `zet` filetype)
 
 ## Installation
 
@@ -27,14 +27,14 @@ collections without migration.
 
 ```lua
 {
-    "navicore/zettlekast.nvim",
+    "navicore/zet.nvim",
     dependencies = {
         "nvim-telescope/telescope.nvim",
         "nvim-lua/plenary.nvim",
         "mattn/calendar-vim", -- optional
     },
     config = function()
-        require("zettlekast").setup({
+        require("zet").setup({
             -- see Configuration below
         })
     end,
@@ -44,7 +44,7 @@ collections without migration.
 ## Configuration
 
 ```lua
-require("zettlekast").setup({
+require("zet").setup({
     home = "~/git/navicore/zet",
     templates = "~/git/navicore/zet/templates",
     template_new_note = "~/git/navicore/zet/templates/base_note.md",
@@ -77,7 +77,7 @@ require("zettlekast").setup({
     },
 
     -- Appearance
-    auto_set_filetype = true,           -- set zettlekast filetype for vault .md files
+    auto_set_filetype = true,           -- set zet filetype for vault .md files
     command_palette_theme = "ivy",      -- "ivy" or "dropdown"
 
     -- Reminders
@@ -108,8 +108,8 @@ Template files use `{{variable}}` placeholders:
 
 ## Commands
 
-All accessible via `:Zettlekast <subcommand>` with tab completion.
-`:Zettlekast` alone opens the command palette.
+All accessible via `:Zet <subcommand>` with tab completion.
+`:Zet` alone opens the command palette.
 
 | Command | Description |
 |---------|-------------|
@@ -135,7 +135,7 @@ Legacy aliases: `:ReminderScan`, `:ReminderScanUpcoming`, `:ReminderScanAll`, `:
 ## Keybinding Examples
 
 ```lua
-local zk = require("zettlekast")
+local zk = require("zet")
 vim.keymap.set("n", "<leader>zf", zk.find_notes, { desc = "Find notes" })
 vim.keymap.set("n", "<leader>zd", zk.find_daily_notes, { desc = "Daily notes" })
 vim.keymap.set("n", "<leader>zg", zk.search_notes, { desc = "Grep notes" })
@@ -183,34 +183,34 @@ lazy.nvim — adjust if your plugin manager installs elsewhere.
 
 **Status bar reminder count** — reference in `status-right`:
 ```
-#($HOME/.local/share/nvim/lazy/zettlekast.nvim/scripts/tmux-reminders.sh $HOME/git/$(whoami)/zet)
+#($HOME/.local/share/nvim/lazy/zet.nvim/scripts/tmux-reminders.sh $HOME/git/$(whoami)/zet)
 ```
 
 **Popup keybindings:**
 ```tmux
-bind r run-shell '$HOME/.local/share/nvim/lazy/zettlekast.nvim/scripts/tmux-reminder-popup.sh'
-bind z run-shell '$HOME/.local/share/nvim/lazy/zettlekast.nvim/scripts/tmux-zett-popup.sh'
+bind r run-shell '$HOME/.local/share/nvim/lazy/zet.nvim/scripts/tmux-reminder-popup.sh'
+bind z run-shell '$HOME/.local/share/nvim/lazy/zet.nvim/scripts/tmux-zett-popup.sh'
 ```
 
 **Click support** for the status bar badges:
 ```tmux
 bind -Troot MouseDown1Status if -F '#{==:#{mouse_status_range},reminder}' \
-  'run-shell "$HOME/.local/share/nvim/lazy/zettlekast.nvim/scripts/tmux-reminder-popup.sh"' \
+  'run-shell "$HOME/.local/share/nvim/lazy/zet.nvim/scripts/tmux-reminder-popup.sh"' \
   'if -F "#{==:#{mouse_status_range},zett}" \
-    "run-shell $HOME/.local/share/nvim/lazy/zettlekast.nvim/scripts/tmux-zett-popup.sh" \
+    "run-shell $HOME/.local/share/nvim/lazy/zet.nvim/scripts/tmux-zett-popup.sh" \
     "select-window -t ="'
 ```
 
 ## Syntax Highlighting
 
-The `zettlekast` filetype extends markdown with highlight groups for:
+The `zet` filetype extends markdown with highlight groups for:
 - `zkLink` — `[[wiki links]]`
 - `zkHighlight` — `==highlighted text==`
 - `zkTag` — `#tags`
 - `zkBrackets` — the `[[` `]]` `==` delimiters
 
 These work with any colorscheme. If you use render-markdown.nvim, add
-`zettlekast` to its filetypes.
+`zet` to its filetypes.
 
 ## Credits
 

@@ -45,8 +45,8 @@ local function compare_time(expected, actual)
     end
 end
 
-local parse = require("zettlekast.reminders.time_parser").parse
-local tokenize = require("zettlekast.reminders.time_parser").tokenize
+local parse = require("zet.reminders.time_parser").parse
+local tokenize = require("zet.reminders.time_parser").tokenize
 
 assert.are.are_function(parse)
 
@@ -458,7 +458,7 @@ describe("tokenize", function()
 end)
 
 describe("snooze choices", function()
-    local snooze = require("zettlekast.reminders.snooze")
+    local snooze = require("zet.reminders.snooze")
 
     it("should parse all snooze choices", function()
         for _, choice in ipairs(snooze.choices) do

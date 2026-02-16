@@ -13,9 +13,9 @@ local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local entry_display = require("telescope.pickers.entry_display")
 
-local time_parser = require("zettlekast.reminders.time_parser")
-local scanner = require("zettlekast.reminders.scanner")
-local snooze = require("zettlekast.reminders.snooze")
+local time_parser = require("zet.reminders.time_parser")
+local scanner = require("zet.reminders.scanner")
+local snooze = require("zet.reminders.snooze")
 
 local fn = vim.fn
 

@@ -1,8 +1,8 @@
 -- Autocommands for reminder processing: auto-convert natural language, update virtual text
 local M = {}
 
-local time_parser = require("zettlekast.reminders.time_parser")
-local virtual_text = require("zettlekast.reminders.virtual_text")
+local time_parser = require("zet.reminders.time_parser")
+local virtual_text = require("zet.reminders.virtual_text")
 
 -- Function to convert natural language time to ISO 8601
 local function convert_to_iso8601(text)
@@ -36,7 +36,7 @@ end
 
 -- Function to process the current file
 function M.process_file()
-    local cfg = require("zettlekast.config").get()
+    local cfg = require("zet.config").get()
     local current_file = vim.fn.expand("%:p")
 
     for _, dir in ipairs(cfg.scan_dirs or { cfg.home }) do
@@ -54,21 +54,21 @@ end
 
 -- Function to set up virtual text for the entire buffer
 function M.update_virtual_text()
-    local cfg = require("zettlekast.config").get()
+    local cfg = require("zet.config").get()
     if not cfg.reminders or not cfg.reminders.show_virtual_text then
         return
     end
     virtual_text.update_virtual_text()
 end
 
--- Set up autocmds scoped to zettlekast filetype
+-- Set up autocmds scoped to zet filetype
 function M.setup_autocmds()
-    local cfg = require("zettlekast.config").get()
+    local cfg = require("zet.config").get()
     if not cfg.reminders or not cfg.reminders.enabled then
         return
     end
 
-    local group = vim.api.nvim_create_augroup("ZettlekastReminders", { clear = true })
+    local group = vim.api.nvim_create_augroup("ZetReminders", { clear = true })
 
     if cfg.reminders.scan_on_save then
         vim.api.nvim_create_autocmd("BufWritePre", {

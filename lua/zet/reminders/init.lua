@@ -1,9 +1,9 @@
 -- Reminder subsystem orchestration and commands
 local M = {}
 
-local scanner = require("zettlekast.reminders.scanner")
-local snooze = require("zettlekast.reminders.snooze")
-local time_parser = require("zettlekast.reminders.time_parser")
+local scanner = require("zet.reminders.scanner")
+local snooze = require("zet.reminders.snooze")
+local time_parser = require("zet.reminders.time_parser")
 
 --- Check if a line contains a reminder
 function M.is_reminder(line)
@@ -12,7 +12,7 @@ end
 
 --- Scan and show due reminders via Telescope
 function M.scan(upcoming, threshold_hours)
-    local cfg = require("zettlekast.config").get()
+    local cfg = require("zet.config").get()
     local paths = cfg.scan_dirs or { cfg.home }
 
     if upcoming then
@@ -22,7 +22,7 @@ function M.scan(upcoming, threshold_hours)
         scanner.scan_paths(paths)
     end
 
-    local telescope_reminders = require("zettlekast.reminders.telescope")
+    local telescope_reminders = require("zet.reminders.telescope")
     telescope_reminders.reminder_picker({
         paths = paths,
         scan_type = upcoming and "upcoming" or "due",
@@ -33,12 +33,12 @@ end
 
 --- Scan and show all reminders
 function M.scan_all()
-    local cfg = require("zettlekast.config").get()
+    local cfg = require("zet.config").get()
     local paths = cfg.scan_dirs or { cfg.home }
 
     scanner.scan_paths_all(paths)
 
-    local telescope_reminders = require("zettlekast.reminders.telescope")
+    local telescope_reminders = require("zet.reminders.telescope")
     telescope_reminders.reminder_picker({
         paths = paths,
         scan_type = "all",
@@ -48,13 +48,13 @@ end
 
 --- Scan and show recently completed reminders
 function M.scan_recent_done(lookback_hours)
-    local cfg = require("zettlekast.config").get()
+    local cfg = require("zet.config").get()
     local paths = cfg.scan_dirs or { cfg.home }
     lookback_hours = lookback_hours or (cfg.reminders and cfg.reminders.default_threshold_hours) or 48
 
     scanner.scan_paths_recent_done(paths, lookback_hours)
 
-    local telescope_reminders = require("zettlekast.reminders.telescope")
+    local telescope_reminders = require("zet.reminders.telescope")
     telescope_reminders.reminder_picker({
         paths = paths,
         scan_type = "recent_done",
@@ -131,13 +131,13 @@ end
 
 --- Setup reminder commands and autocmds
 function M.setup()
-    local cfg = require("zettlekast.config").get()
+    local cfg = require("zet.config").get()
     if not cfg.reminders or not cfg.reminders.enabled then
         return
     end
 
     -- Set up autocmds for auto-conversion and virtual text
-    require("zettlekast.reminders.autocmds").setup_autocmds()
+    require("zet.reminders.autocmds").setup_autocmds()
 end
 
 return M

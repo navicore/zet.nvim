@@ -1,7 +1,7 @@
 -- run via:
 -- :PlenaryBustedFile tests/templates_spec.lua
 
-local templates = require("zettlekast.templates")
+local templates = require("zet.templates")
 
 describe("templates", function()
     describe("substitute", function()

@@ -1,6 +1,6 @@
 local M = {}
 
-local utils = require("zettlekast.utils")
+local utils = require("zet.utils")
 
 --- Load a template file and return its content as a string
 function M.load(template_path)

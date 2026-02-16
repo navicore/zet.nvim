@@ -1,8 +1,8 @@
 local M = {}
 
-local config = require("zettlekast.config")
-local dates = require("zettlekast.dates")
-local utils = require("zettlekast.utils")
+local config = require("zet.config")
+local dates = require("zet.dates")
+local utils = require("zet.utils")
 
 --- Open calendar-vim
 function M.show_calendar()
@@ -38,7 +38,7 @@ function M.calendar_action(day, month, year, week, dir)
         vars.title = date_str
 
         local template_path = cfg.template_new_daily
-        local templates = require("zettlekast.templates")
+        local templates = require("zet.templates")
         local lines = templates.apply(template_path, vars)
         if lines then
             utils.write_lines(filepath, lines)
@@ -75,8 +75,8 @@ function M.setup()
     end
 
     -- Point calendar-vim at the autoload bridge functions
-    vim.g.calendar_action = "zettlekast#calendar_action"
-    vim.g.calendar_sign = "zettlekast#calendar_sign"
+    vim.g.calendar_action = "zet#calendar_action"
+    vim.g.calendar_sign = "zet#calendar_sign"
 end
 
 return M
