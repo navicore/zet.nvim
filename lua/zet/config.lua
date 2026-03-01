@@ -40,6 +40,12 @@ M.defaults = {
         show_virtual_text = true,
         default_threshold_hours = 48,
     },
+
+    contacts = {
+        dir = "contacts",
+        default_import_path = "~/Desktop/All contacts.vcf",
+        default_export_path = "~/Desktop/contacts-export.vcf",
+    },
 }
 
 function M.setup(user_config)

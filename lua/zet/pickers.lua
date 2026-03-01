@@ -169,6 +169,10 @@ function M.panel()
         reminder_edit = "Snooze/edit reminder on current line",
         reminder_recent_done = "Recently completed reminders (48h)",
         line_history = "Git history for line under cursor",
+        contacts_import = "Import contacts from VCF file",
+        contacts_find = "Browse/search contacts",
+        contacts_dedup = "Find and merge duplicate contacts",
+        contacts_export = "Export contacts to VCF file",
     }
 
     local entries = {}
