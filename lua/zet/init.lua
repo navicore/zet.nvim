@@ -46,6 +46,10 @@ local commands = {
     "reminder_edit",
     "reminder_recent_done",
     "line_history",
+    "contacts_import",
+    "contacts_find",
+    "contacts_dedup",
+    "contacts_export",
 }
 
 function M.command_list()
@@ -124,6 +128,22 @@ end
 
 function M.line_history()
     require("zet.history").line_history()
+end
+
+function M.contacts_import(vcf_path)
+    require("zet.contacts").import(vcf_path)
+end
+
+function M.contacts_find()
+    require("zet.contacts").find()
+end
+
+function M.contacts_dedup()
+    require("zet.contacts").dedup_interactive()
+end
+
+function M.contacts_export(output_path)
+    require("zet.contacts").export(output_path)
 end
 
 return M

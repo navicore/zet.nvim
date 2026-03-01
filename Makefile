@@ -1,4 +1,4 @@
-.PHONY: test test-time-parser test-dates test-templates test-links test-notes lint
+.PHONY: test test-time-parser test-dates test-templates test-links test-notes test-vcf-parser test-contacts-markdown test-dedup lint
 
 PLENARY_DIR ?= $(shell nvim --headless -c 'echo stdpath("data") .. "/lazy/plenary.nvim"' -c 'quit' 2>&1 | tr -d '\n')
 
@@ -19,6 +19,15 @@ test-links:
 
 test-notes:
 	nvim --headless -c "PlenaryBustedFile tests/notes_spec.lua"
+
+test-vcf-parser:
+	nvim --headless -c "PlenaryBustedFile tests/vcf_parser_spec.lua"
+
+test-contacts-markdown:
+	nvim --headless -c "PlenaryBustedFile tests/contacts_markdown_spec.lua"
+
+test-dedup:
+	nvim --headless -c "PlenaryBustedFile tests/dedup_spec.lua"
 
 lint:
 	luacheck lua/ --no-max-line-length --globals vim
